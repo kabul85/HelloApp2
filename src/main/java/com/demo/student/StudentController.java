@@ -22,6 +22,7 @@ public class StudentController {
 
     @GetMapping("/lastname")
     public String getAllStudentByLatName() {
+        String str = "hello";
         return "These are all students by last name!";
     }
 }
