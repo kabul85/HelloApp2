@@ -9,4 +9,19 @@ public class StudentController {
     public String getAllStudent() {
         return "These are all students";
     }
+
+    @GetMapping("/id")
+    public String getAllStudentById() {
+        return "These are all students by id";
+    }
+
+    @GetMapping("/name")
+    public String getAllStudentByName() {
+        return "These are all students by name";
+    }
+
+    @GetMapping("/lastname")
+    public String getAllStudentByLatName() {
+        return "These are all students by last name";
+    }
 }
