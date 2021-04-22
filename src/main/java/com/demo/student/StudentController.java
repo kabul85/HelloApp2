@@ -25,4 +25,10 @@ public class StudentController {
         String str = "hello";
         return "These are all students by last name!";
     }
+
+    @GetMapping("/delte")
+    public String getStudentById() {
+        String str = "deleted satudent";
+        return "These are all students by last name!" + str;
+    }
 }
