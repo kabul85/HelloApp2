@@ -1,40 +1,32 @@
 package com.demo.student;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
+@RequestMapping("/api")
 public class StudentController {
-    @GetMapping("/")
-    public String getAllStudent() {
-        return "These are all students";
+    @Autowired
+    private final StudentRepository studentRepository;
+
+    public StudentController(StudentRepository studentRepository) {
+        this.studentRepository = studentRepository;
     }
 
-    @GetMapping("/id")
-    public String getAllStudentById() {
-        return "These are all students by id";
+    @GetMapping("/students")
+    public List<Student> getAllStudent() {
+        return studentRepository.findAll();
     }
 
-    @GetMapping("/name")
-    public String getAllStudentByName() {
-        return "These are all students by name";
+    @GetMapping("/students/{id}")
+    public Student getStudentById(@PathVariable Long id) {
+        return studentRepository.findById(id).orElseThrow();
     }
 
-    @GetMapping("/lastname")
-    public String getAllStudentByLatName() {
-        String str = "hello";
-        return "These are all students by last name!";
-    }
-
-    @GetMapping("/delte")
-    public String getStudentById() {
-        String str = "deleted satudent";
-        return "These are all students by last name!" + str;
-    }
-
-    @GetMapping("/deltebyid")
-    public String getStudentsById() {
-        String str = "deleted satudents";
-        return "These are all students by last name!" + str;
+    @DeleteMapping("/students/{id}")
+    public void deleteStudent(@PathVariable Long id) {
+        studentRepository.deleteById(id);
     }
 }
